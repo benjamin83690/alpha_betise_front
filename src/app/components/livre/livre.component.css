@@ -1,0 +1,13 @@
+.price {
+    display: block;
+    width: 50px;
+    position: absolute;
+    right: 4%;
+    text-align: center;
+    background: #b1d9eb;
+    padding: 10px;
+    border-radius: 50%;
+    font-weight: bold;
+    color: #07538f;
+    text-shadow: #6fcef9 1px 0 2px;
+}

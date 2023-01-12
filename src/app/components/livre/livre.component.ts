@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-livre',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./livre.component.css']
 })
 export class LivreComponent implements OnInit {
+
+  @Input() livre: any = {};
+  index!: number;
 
   constructor() { }
 
