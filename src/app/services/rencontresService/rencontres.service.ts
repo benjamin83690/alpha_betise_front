@@ -62,8 +62,6 @@ export class RencontresService {
   }
 
   teaserEvents(isPast: boolean, events: any[]) {
-    console.log(events);
-    
     return isPast ? this.lastEvents(events) : this.firstEvents(events);
   }
 

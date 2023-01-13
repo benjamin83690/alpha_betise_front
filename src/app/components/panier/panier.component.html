@@ -31,7 +31,7 @@
             valider
             <mat-icon>done</mat-icon>
           </button>
-          <button class="btn btn-danger">
+          <button class="btn btn-danger" (click)="clearPanier()">
             supprimer
             <mat-icon>delete_forever</mat-icon>
           </button>
@@ -54,9 +54,9 @@
                     *ngIf="detail.quantite > 1"
                     >s</span
                   >
-                  * {{ detail.prix }}&euro;
+                  * {{ detail.livre.prix }}&euro;
                 </li>
-                <li>total : {{ detail.quantite * detail.prix }}&euro;</li>
+                <li>total : {{ detail.quantite * detail.livre.prix }}&euro;</li>
               </ul>
 
               <hr *ngIf="!isLast" class="text-success" />

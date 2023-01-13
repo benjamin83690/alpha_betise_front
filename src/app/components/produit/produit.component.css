@@ -1,0 +1,47 @@
+h4 {
+    font-weight: bold;
+    margin-top: 2em;
+    margin-bottom: 0.8em;
+}
+
+.img-container {
+    text-align: center;
+}
+
+.img-produit {
+    margin-bottom: 1em;
+    height: auto;
+    max-width: 100%;
+}
+
+.fiche-content {
+    text-align: center;
+}
+
+.text-brand-1 {
+    cursor: pointer;
+}
+
+.prix {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.nav-tabs {
+    margin-bottom: 0.8em;
+}
+
+.nav-tabs > button > span {
+    color: black;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+button:disabled {
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: whitesmoke;
+}
