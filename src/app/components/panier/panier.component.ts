@@ -30,7 +30,13 @@ export class PanierComponent implements OnInit, OnChanges {
   }
 
   total() {
-    return (this.detailsCommande.map((detail:any) => detail.prix * detail.quantite).reduce((acc:any, val:any) => acc + val));
+    if(Object.keys(this.detailsCommande).length > 0)
+      return (this.detailsCommande.map((detail:any) => detail.prix * detail.quantite).reduce((acc:any, val:any) => acc + val));
+    return 0;
+  }
+
+  isNotEmpty() {
+    return Object.keys(this.detailsCommande).length;
   }
 
 }
