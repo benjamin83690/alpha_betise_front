@@ -1,1 +1,65 @@
-<p>panier works!</p>
+<mat-sidenav-container
+  class="example-container"
+  (backdropClick)="closeNav()"
+  [ngClass]="{ visible: isExpanded }"
+  fixedInViewport
+>
+  <mat-sidenav
+    #sidenav
+    class="example-sidenav"
+    mode="over"
+    [(opened)]="isExpanded"
+    position="end"
+    fixedInViewport
+  >
+    <div class="container">
+      <div class="d-flex justify-content-between mb-5 align-items-center">
+        <div>
+          <p class="fs-1 m-0">Mon panier :</p>
+        </div>
+        <div>
+          <button class="btn btn-primary me-2">
+            valider
+            <mat-icon>done</mat-icon>
+          </button>
+          <button class="btn btn-danger">
+            supprimer
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div
+          class="col-md-12 card border border-success"
+          style="width: 80%; height: auto; margin: auto"
+        >
+          <div class="card-body p-5">
+            <div *ngFor="let detail of detailsCommande; let isLast = last">
+              <ul>
+                <li>{{ detail.livre.titre }}</li>
+                <li>Nombre d'articles : {{ detail.quantite }}</li>
+                <li>
+                  prix = {{ detail.quantite }} livre<span
+                    *ngIf="detail.quantite > 1"
+                    >s</span
+                  >
+                  * {{ detail.prix }}&euro;
+                </li>
+                <li>total : {{ detail.quantite * detail.prix }}&euro;</li>
+              </ul>
+
+              <hr *ngIf="!isLast" class="text-success" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="position: absolute; right: 0; bottom: 10px">
+        <div class="d-flex align-items-center justify-content-end">
+          <p class="m-0 fs-3">Prix total : {{ total() }}</p>
+          <mat-icon style="font-size: 15px">euro_symbol</mat-icon>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav>
+</mat-sidenav-container>

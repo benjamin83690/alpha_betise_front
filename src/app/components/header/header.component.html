@@ -1,32 +1,25 @@
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Alpha Bêtise</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page">Accueil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Rencontres</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Conseils de lectures</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">La librairie</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" href="#"><app-panier></app-panier></a>
-            </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<mat-toolbar color="primary" style="position: fixed">
+  <mat-toolbar-row>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Alpha Betise</span>
+    <span class="example-spacer"></span>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with add_shopping_cart icon"
+      (click)="opened = !opened"
+    >
+      <mat-icon matBadge="15" matBadgeColor="warn">add_shopping_cart</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<app-panier
+  [isExpanded]="opened"
+  (toggleValue)="valueChanged($event)"
+></app-panier>

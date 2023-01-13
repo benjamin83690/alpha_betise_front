@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
+import { FormsModule  } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +17,7 @@ import { PanierComponent } from './components/panier/panier.component';
 import { ProduitComponent } from './components/produit/produit.component';
 import { InscriptionEvenementComponent } from './components/inscription-evenement/inscription-evenement.component';
 import { ConseilsLectureComponent } from './components/conseils-lecture/conseils-lecture.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { ConseilsLectureComponent } from './components/conseils-lecture/conseils
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

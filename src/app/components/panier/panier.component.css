@@ -1,0 +1,21 @@
+mat-sidenav-container {
+  background: #0000000f;
+  height: 100vh;
+  display: none;
+  width: 100%;
+  position: fixed;
+  right: 0;
+  top: 64px;
+  bottom: 0;
+}
+
+.visible {
+  display: block;
+}
+
+mat-sidenav {
+  top: 64px !important;
+  width: 40%;
+  background: rgb(236, 242, 250);
+}
+
