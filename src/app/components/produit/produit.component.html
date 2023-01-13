@@ -1,1 +1,110 @@
-<p>produit works!</p>
+<div class="container-fluid mt-4">
+    <div class="container mb-5">
+        <div class="row justify-content-between mb-5">
+            <div class="img-container col-12 col-md-3">
+                <img src="https://www.lalibrairie.com/cache/img/livres/835/9782330174835.webp" class="img-produit"
+                    alt="photo de couverture">
+                <span class="text-brand-1 text-decoration-underline" data-bs-toggle="modal"
+                    data-bs-target="#infosTechniquesModal">
+                    Lire les informations techniques
+                </span>
+            </div>
+            <div class="fiche-content col-12 col-md-9">
+                <div>
+                    <h1>{{ livre.titre }}</h1>
+                    <h2>De
+                        <a href="#">{{ livre.auteur.nom }}</a>
+                        chez
+                        <a href="#">{{ livre.editeur.nom }}</a>
+                        <br>
+                        <span *ngIf="livre.collection.nom"> Collection : </span><a href="#">{{
+                            livre.collection.nom }}</a>
+                    </h2>
+                    <div class="row mt-3">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 text-sm-end">
+                                <span class="text-nowrap">{{ livre.nbPages }} pages</span>
+                            </div>
+                            <div class="date-parution col-12 col-sm-6 text-sm-start border-start mb-5">
+                                Paru le {{ livre.dateParution }}
+                            </div>
+                            <div>
+                                <span class="prix">{{ livre.prix.toFixed(2) }} €</span>
+                            </div>
+                            <div class="add-to-cart mb-4">
+                                <button type="button" class="btn btn-primary btn-lg" (click)="addPanier(livre)">Ajouter à votre panier</button>
+                                <br>
+                                <span>{{ livre.etatStock.etat }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="quatre-couv-tab" data-bs-toggle="tab" data-bs-target="#quatre-couv" type="button" role="tab" aria-controls="quatre-couv" aria-selected="true"><span>Quatrième de couverture</span></button>
+              <button class="nav-link" id="avis-libraire-tab" data-bs-toggle="tab" data-bs-target="#avis-libraire" type="button" role="tab" aria-controls="avis-libraire" aria-selected="false"><span>L'avis du libraire</span></button>
+              <button class="nav-link" id="avis-clients-tab" data-bs-toggle="tab" data-bs-target="#avis-clients" type="button" role="tab" aria-controls="avis-clients" aria-selected="false"><span>L'avis des clients</span></button>
+              <button class="nav-link" id="meme-auteur-tab" data-bs-toggle="tab" data-bs-target="#meme-auteur" type="button" role="tab" aria-controls="meme-auteur" aria-selected="false" disabled><span>Du même auteur</span></button>
+            </div>
+          </nav>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="quatre-couv" role="tabpanel" aria-labelledby="pills-home-tab"
+                tabindex="0">
+                <section>
+                    <p>{{ livre.resume }}</p>
+                </section>
+            </div>
+            <div class="tab-pane fade" id="avis-libraire" role="tabpanel" aria-labelledby="pills-profile-tab"
+                tabindex="0">
+                <section>
+                    <p>{{ livre.libraireCom }}</p>
+                </section>
+            </div>
+            <div class="tab-pane fade" id="avis-clients" role="tabpanel" aria-labelledby="pills-contact-tab"
+                tabindex="0">
+                <section>
+                    <p>{{ livre.commentaires.commentaire }}</p>
+                </section>
+            </div>
+            <div class="tab-pane fade" id="meme-auteur" role="tabpanel" aria-labelledby="pills-disabled-tab"
+                tabindex="0">
+                <section>
+                    <p>{{ livre }}</p>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="infosTechniquesModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Informations supplémentaires</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Nb de pages : {{ livre.nbPages }}
+                    <br>
+                    Poids : {{ livre.poids }}g
+                    <br>
+                    Dimensions (l x L x ép.) : {{ livre.longueur }}cm x {{ livre.largeur }}cm x {{ livre.epaisseur }}cm
+                    <br>
+                    Date de parution : {{ livre.dateParution }}
+                    <br>
+                    ISBN : {{ livre.isbnFormatte }}
+                    <br>
+                    EAN : {{ livre.isbn }}
+                    <br>
+                    Langue : {{ livre.langue.langue }}
+                    <br>
+                    Langue d'origine : {{ livre.langue.langue }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

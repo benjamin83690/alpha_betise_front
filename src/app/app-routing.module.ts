@@ -6,8 +6,10 @@ import { RencontresComponent } from './components/rencontres/rencontres.componen
 import { EVENT_CONF } from './configs/EventConfig';
 import { NextEventConfig } from './configs/NextEventConfig';
 import { PastEventConfig } from './configs/PastEventConfig';
+import { ProduitComponent } from './components/produit/produit.component';
 
 const routes: Routes = [
+  { path: 'produit', component: ProduitComponent },
   {
     path: 'evenements',
     component: RencontresComponent,
