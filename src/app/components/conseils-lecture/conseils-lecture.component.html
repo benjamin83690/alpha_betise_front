@@ -1,1 +1,62 @@
-<p>conseils-lecture works!</p>
+<div class="container" style="padding-top: 100px">
+  <h1 class="fs-1 mb-5">Conseils de lecture</h1>
+  <mat-form-field appearance="standard">
+    <mat-label>Filtrer</mat-label>
+    <input
+      matInput
+      placeholder="Catgerorie"
+      [matAutocomplete]="auto"
+      [formControl]="filterControl"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let categorie of categories" [value]="categorie">
+        {{ categorie }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <div class="row">
+    <div class="col-lg-3 mb-3 col-md-4" *ngFor="let livre of obs | async">
+      <mat-card class="example-card col-md-12">
+        <mat-card-header>
+          <mat-card-title-group class="w-100">
+            <mat-card-title>{{ livre.titre }}</mat-card-title>
+            <div class="box-img">
+              <img
+                mat-card-sm-image
+                src="{{ livre.photosLivre[0] }}"
+                class="img rounded"
+              />
+            </div>
+            <mat-card-subtitle
+              >{{ livre.auteur }} - {{ livre.editeur }}</mat-card-subtitle
+            >
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content class="bg-light p-2 rounded">
+          <p>{{ livre.resume }}</p>
+          <div class="d-flex align-items-center">
+            <p class="m-0">Note des lecteurs:</p>
+            <mat-icon
+              class="text-warning"
+              *ngFor="let star of filledStars(livre.commentairesUtilsateur)"
+              >star</mat-icon
+            >
+            <mat-icon
+              class="text-warning"
+              *ngFor="let emptyStar of emptyStars(livre.commentairesUtilsateur)"
+              >star_border</mat-icon
+            >
+          </div>
+          <p class="fst-italic">{{ livre.libraireCom }}</p>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-outline-primary btn-sm">Voir</button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <mat-paginator
+    [pageSizeOptions]="[4, 8, 16, 32]"
+    [pageSize]="8"
+  ></mat-paginator>
+</div>
