@@ -1,0 +1,13 @@
+.filtre {
+    background: url(https://picsum.photos/800) center center no-repeat;
+    inset: 0px;
+    opacity: 0.3339;
+    position: absolute;
+    z-index: 0;
+}
+
+mat-card-content {
+    height: 300px;
+    background: rgb(34 34 34 / 80%);
+    position: relative;
+}

@@ -8,7 +8,7 @@ import {
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, startWith } from 'rxjs';
 import { UtilsService } from 'src/app/services/utilsService/utils.service';
 
 // sera enlever quand on aura de vraies data
@@ -167,14 +167,14 @@ const DATA: any[] = [
 export class ConseilsLectureComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input() livres: any[] = [];
-  obs!: Observable<any>;
+  obs!: Observable<any[]>;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>([]);
   categories: any[] = [];
   filterControl = new FormControl('');
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-    private utils: UtilsService
+    public utils: UtilsService
   ) {}
 
   ngOnInit() {
@@ -191,12 +191,10 @@ export class ConseilsLectureComponent implements OnInit {
     }
   }
 
-  filledStars(comsLivre: any[]) {
-    return this.utils.filledStars(comsLivre);
-  }
-
-  emptyStars(comsLivre: any[]) {
-    return this.utils.emptyStars(comsLivre);
+  filteredOptions(categories: any[]) {
+    return this.filterControl.value
+      ? this._filter(this.filterControl.value)
+      : categories;
   }
 
   getCategories() {
@@ -218,5 +216,11 @@ export class ConseilsLectureComponent implements OnInit {
     this.changeDetectorRef.detectChanges();
     this.dataSource.paginator = this.paginator;
     this.obs = this.dataSource.connect();
+  }
+
+  private _filter(value: string): string[] {
+    return this.categories.filter((option) =>
+      option.toLowerCase().includes(value.toLowerCase())
+    );
   }
 }

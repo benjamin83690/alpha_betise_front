@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { EventConfig, EVENT_CONF } from 'src/app/configs/EventConfig';
+import { RencontresService } from 'src/app/services/rencontresService/rencontres.service';
 
 @Component({
   selector: 'app-evenement',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EvenementComponent implements OnInit {
 
-  constructor() { }
+  @Input() evenement!: any;
+  @Input() eventConfig!: EventConfig;
+
+  constructor(public eventService: RencontresService) {
+   }
 
   ngOnInit(): void {
+  }
+
+  isNotEmpty(obj: any) {
+    return Object.keys(obj).length;
   }
 
 }

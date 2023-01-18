@@ -1,5 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~bootstrap/dist/css/bootstrap.min.css';
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.mat-drawer-inner-container{ padding: 20px; }
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-drawer-inner-container {
+  padding: 20px;
+}
+
+button.custom-date-class {
+  background-color: orange;
+  border-radius: 100%;
+}
+
+button.custom-date-class2 {
+  background-color: tomato;
+  border-radius: 100%;
+}
+
+.mat-calendar-body-selected {
+  background-color: rgba(0, 0, 0, 0.202);
+}
+
+mat-card .mat-card-header-text {
+  margin: 0 !important;
+}

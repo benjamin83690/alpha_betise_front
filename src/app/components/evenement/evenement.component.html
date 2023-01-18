@@ -1,1 +1,65 @@
-<p>evenement works!</p>
+<mat-card
+  class="example-card col-md-8 text-white border border-sm border-secondary mt-5 mx-auto"
+  style="background-color: #0920468f"
+>
+  <mat-card-header>
+    <div class="box-img me-1 mb-2">
+      <img
+        mat-card-sm-image
+        src="{{ evenement.livre.photo }}"
+        class="img rounded"
+      />
+    </div>
+    <mat-card-title-group class="w-100 align-items-center">
+      <mat-card-title class="fs-3">{{
+        evenement.titre
+      }}</mat-card-title>
+      <mat-card-subtitle class="text-warning fs-5">{{
+        eventService.getFullDate(evenement.date)
+      }}</mat-card-subtitle>
+      <div>
+        <p
+          class="fs-5"
+          *ngIf="evenement.maxParticipants && !eventConfig.isPast"
+        >
+          <span class="fst-italic fs-6">Participants : </span>
+          <span
+            class="fw-bold"
+            [ngStyle]="{ color: eventService.colorParticipants(evenement) }"
+          >
+            &nbsp;{{
+              evenement.maxParticipants -
+                (evenement.maxParticipants -
+                  evenement.utilisateurs.length)
+            }}</span
+          >
+          /{{ evenement.maxParticipants }}
+        </p>
+        <p
+          *ngIf="evenement.prix"
+          class="text-center text-warning fst-italic fs-5"
+        >
+          prix: {{ evenement.prix }}&euro;
+        </p>
+      </div>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content class="p-5 rounded">
+    <div class="filtre rounded"></div>
+    <div style="z-index: 3; position: inherit">
+      <p class="fs-4 fst-italic">Public: {{ evenement.agePublic }}</p>
+      <p class="fw-bold">{{ evenement.livre.titre }}</p>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button
+        *ngIf="!eventConfig.isPast"
+        mat-raised-button
+        color="primary"
+        class="mt-3"
+        style="float: right"
+      >
+        S'inscrire
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>
