@@ -8,8 +8,8 @@
       [matAutocomplete]="auto"
       [formControl]="filterControl"
     />
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let categorie of categories" [value]="categorie">
+    <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
+      <mat-option *ngFor="let categorie of filteredOptions(categories)" [value]="categorie">
         {{ categorie }}
       </mat-option>
     </mat-autocomplete>
@@ -38,12 +38,12 @@
             <p class="m-0">Note des lecteurs:</p>
             <mat-icon
               class="text-warning"
-              *ngFor="let star of filledStars(livre.commentairesUtilsateur)"
+              *ngFor="let star of utils.filledStars(livre.commentairesUtilsateur)"
               >star</mat-icon
             >
             <mat-icon
               class="text-warning"
-              *ngFor="let emptyStar of emptyStars(livre.commentairesUtilsateur)"
+              *ngFor="let emptyStar of utils.emptyStars(livre.commentairesUtilsateur)"
               >star_border</mat-icon
             >
           </div>

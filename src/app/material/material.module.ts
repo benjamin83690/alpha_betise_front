@@ -12,6 +12,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     MatBadgeModule,
@@ -42,8 +46,13 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    MatAutocompleteModule
-  ]
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'fr'},
+  ],
 
 })
 export class MaterialModule { }
