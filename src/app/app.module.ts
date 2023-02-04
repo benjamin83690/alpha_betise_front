@@ -18,7 +18,7 @@ import { ProduitComponent } from './components/produit/produit.component';
 import { InscriptionEvenementComponent } from './components/inscription-evenement/inscription-evenement.component';
 import { ConseilsLectureComponent } from './components/conseils-lecture/conseils-lecture.component';
 import { MaterialModule } from './material/material.module';
-import { TeaserEvenementComponent } from './components/teaser-evenement/teaser-evenement/teaser-evenement.component';
+import { TeaserEvenementComponent } from './components/teaser-evenement/teaser-evenement.component';
 
 @NgModule({
   declarations: [

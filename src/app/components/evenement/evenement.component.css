@@ -11,3 +11,9 @@ mat-card-content {
     background: rgb(34 34 34 / 80%);
     position: relative;
 }
+
+.mat-card {
+    border: border solid 1px grey;
+    margin-top: 30px;
+    margin: auto;
+}

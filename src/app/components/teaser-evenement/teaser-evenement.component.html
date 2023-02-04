@@ -1,0 +1,33 @@
+<mat-card
+  class="example-card col-md-12 bg-light"
+  style="width: 85%; margin: auto"
+>
+  <mat-card-header>
+    <mat-card-title-group class="w-100">
+      <mat-card-title class="fs-5">{{ evenement.titre }}</mat-card-title>
+      <mat-card-subtitle
+        class="fs-5"
+        [ngStyle]="{ color: eventConfig.customColor }"
+      >
+        Le {{ eventService.getFullDate(evenement.date) }}</mat-card-subtitle
+      >
+      <mat-card-subtitle class="fs-6"> Public:
+        {{ evenement.agePublic }}</mat-card-subtitle
+      >
+      <img
+        mat-card-sm-image
+        src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      />
+    </mat-card-title-group>
+  </mat-card-header>
+  <hr />
+  <mat-card-content class="mt-2 p-2">
+    <p *ngIf="evenement.auteurs.length">
+      Auteur(s):
+      <span *ngFor="let auteur of evenement.auteurs; let isLast = last">
+        {{ isLast ? auteur.nom : auteur.nom + ", " }}</span
+      >
+    </p>
+    <p *ngIf="evenement.livre.titre">Livre: {{ evenement.livre.titre }}</p>
+  </mat-card-content>
+</mat-card>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { EventConfig } from 'src/app/configs/EventConfig';
 import { RencontresService } from 'src/app/services/rencontresService/rencontres.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { RencontresService } from 'src/app/services/rencontresService/rencontres
 })
 export class TeaserEvenementComponent implements OnInit {
 
-  @Input() event!:any;
+  @Input() evenement!:any;
+  @Input() eventConfig!: EventConfig;
 
   constructor(public eventService: RencontresService) { }
 

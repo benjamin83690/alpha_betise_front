@@ -117,5 +117,5 @@ export const PastEventConfig: EventConfig = {
   text: '',
   customClass: 'custom-date-class2',
   isPast: true,
-  customColor: 'tomato'
+  customColor: 'darkorange'
 };

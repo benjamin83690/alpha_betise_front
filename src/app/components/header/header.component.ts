@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -8,14 +7,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
 
-  opened!: boolean;
   constructor() { }
 
   ngOnInit(): void {
   }
-
-  valueChanged(bool: any) {
-    this.opened = bool;
-  }
-
 }
