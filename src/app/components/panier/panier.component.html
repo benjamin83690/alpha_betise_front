@@ -1,7 +1,15 @@
+<button
+  mat-icon-button
+  class="example-icon"
+  aria-label="Example icon-button with add_shopping_cart icon"
+  (click)="opened = !opened"
+>
+  <mat-icon [matBadge]="nbItems" matBadgeColor="warn">add_shopping_cart</mat-icon>
+</button>
 <mat-sidenav-container
   class="example-container"
   (backdropClick)="closeNav()"
-  [ngClass]="{ visible: isExpanded }"
+  [ngClass]="{ visible: opened }"
   fixedInViewport
   style="z-index: 10;"
 >
@@ -9,7 +17,7 @@
     #sidenav
     class="example-sidenav"
     mode="over"
-    [(opened)]="isExpanded"
+    [(opened)]="opened"
     position="end"
     fixedInViewport
   >

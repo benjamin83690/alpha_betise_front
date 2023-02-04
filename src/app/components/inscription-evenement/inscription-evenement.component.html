@@ -1,1 +1,57 @@
-<p>inscription-evenement works!</p>
+<div class="text-center mb-5 bg-light p-4">
+  <img
+    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6UMZOIxGR6QRndG7a6_xQ2pEXerANVSvqZw&usqp=CAU"
+    class="img-fluid"
+  />
+</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="fs-1 mb-5">Inscription a l'evenement:</h1>
+      <div class="row">
+        <div class="col-md-7">
+          <h2 class="m-0">{{ evenement.titre }}, le {{ getFullDate(evenement.date) }}</h2>
+          <p *ngIf="evenement.auteurs.length" class="m-0">
+            Auteurs: 
+            <span *ngFor="let auteur of evenement.auteurs; let isLast = last"> {{isLast ? auteur.nom :auteur.nom + ", "}}</span>
+          </p>
+          <p *ngIf="evenement.livre.titre">Livre: {{evenement.livre.titre}}</p>
+          <p *ngIf="evenement.prix">
+            prix: {{ evenement.prix }}&euro; <br />
+            <span class="text-muted fst-italic">A payer sur place.</span>
+          </p>
+          <p>Public: {{ evenement.agePublic }}</p>
+          <p>
+            Nombre de participants inscrits: {{ evenement.utilisateurs.length }}
+          </p>
+          <p *ngIf="evenement.maxParticipants">Nombre de places: {{ evenement.maxParticipants }}</p>
+          <p *ngIf="!evenement.maxParticipants">Nombre de places: <span class="text-muted fst-italic">Pas de limite de places.</span></p>
+          <p>
+            Addresse: <br />
+            {{ evenement.rue }}, {{ evenement.ville }},
+            {{ evenement.codePostal }}
+          </p>
+          <p>Description: <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Non qui error, obcaecati ea veritatis quia laborum eum, adipisci voluptates minus accusamus earum nisi eligendi quod cupiditate itaque nulla, quos voluptatibus! </p>
+          <p class="fw-bold">
+            Delais de desinscription: <br />
+            <span class="fst-italic"
+              >Vous avez jusqu'a 48h pour vous desinscrire d'un evenement.</span
+            >
+          </p>
+          <div class="mt-5">
+            <button mat-raised-button color="primary" class="pe-3 me-4">
+              Je m'inscris
+            </button>
+            <a mat-raised-button routerLink="/evenements" color="accent" [state]="evenement"
+              >précédent</a
+            >
+          </div>
+        </div>
+        <div class="col-md-5">
+          <img *ngIf="evenement.livre.photo" [src]="evenement.livre.photo" class="img-thumbnail" />
+          <img *ngIf="!evenement.livre.photo" src="https://urlz.fr/kGzQ" class="img-fluid" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

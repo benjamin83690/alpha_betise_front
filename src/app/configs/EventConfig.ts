@@ -9,7 +9,7 @@ export interface EventConfig {
     text: string
     customClass: string,
     isPast: boolean,
-    customColor: string
+    customColor: string,
 }
 
 export const EVENT_CONF = new InjectionToken<EventConfig>('EVENT_CONF');

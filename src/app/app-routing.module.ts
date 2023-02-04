@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ConseilsLectureComponent } from './components/conseils-lecture/conseils-lecture.component';
+import { InscriptionEvenementComponent } from './components/inscription-evenement/inscription-evenement.component';
 import { RencontresComponent } from './components/rencontres/rencontres.component';
 import { EVENT_CONF } from './configs/EventConfig';
 import { NextEventConfig } from './configs/NextEventConfig';
 import { PastEventConfig } from './configs/PastEventConfig';
-import { RencontresService } from './services/rencontresService/rencontres.service';
 
 const routes: Routes = [
   {
@@ -16,11 +16,14 @@ const routes: Routes = [
   {
     path: 'archives',
     component: RencontresComponent,
-    providers: [
-      { provide: EVENT_CONF, useValue: PastEventConfig },
-    ],
+    providers: [{ provide: EVENT_CONF, useValue: PastEventConfig }],
   },
   { path: 'conseils-lecture', component: ConseilsLectureComponent },
+  {
+    path: 'inscription/:id',
+    component: InscriptionEvenementComponent,
+    providers: [{ provide: EVENT_CONF, useValue: NextEventConfig }],
+  },
 ];
 
 @NgModule({

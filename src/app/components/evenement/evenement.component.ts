@@ -1,25 +1,27 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { EventConfig, EVENT_CONF } from 'src/app/configs/EventConfig';
+import { Component, Input, OnInit } from '@angular/core';
+import { EventConfig } from 'src/app/configs/EventConfig';
 import { RencontresService } from 'src/app/services/rencontresService/rencontres.service';
 
 @Component({
   selector: 'app-evenement',
   templateUrl: './evenement.component.html',
-  styleUrls: ['./evenement.component.css']
+  styleUrls: ['./evenement.component.css'],
 })
 export class EvenementComponent implements OnInit {
-
   @Input() evenement!: any;
   @Input() eventConfig!: EventConfig;
 
-  constructor(public eventService: RencontresService) {
-   }
+  constructor(public eventService: RencontresService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   isNotEmpty(obj: any) {
     return Object.keys(obj).length;
   }
 
+  isNotFull(event: any): boolean {
+    if (!event.maxParticipants) return true;
+    if (event.utilisateurs.length < event.maxParticipants) return true;
+    return false;
+  }
 }

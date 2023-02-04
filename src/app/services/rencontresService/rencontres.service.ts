@@ -51,7 +51,10 @@ export class RencontresService {
       .slice(0, 3);
   }
 
-  defaultEvent(events: any[], isPast: boolean) {
+  defaultEvent(events: any[], isPast: boolean, history: any) {
+    if (Object.keys(history).length > 1) {
+      return history;
+    }
     if (isPast) {
       return events.sort((a, b) => a.date - b.date).reverse()[0];
     } 

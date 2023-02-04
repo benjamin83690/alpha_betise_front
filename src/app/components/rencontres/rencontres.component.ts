@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
+import { Router, ActivatedRoute } from '@angular/router';
 import { EventConfig, EVENT_CONF } from 'src/app/configs/EventConfig';
 import { RencontresService } from 'src/app/services/rencontresService/rencontres.service';
 
@@ -14,7 +15,12 @@ export class RencontresComponent implements OnInit {
   evenement: any = {};
   teaserEvents!: any[];
 
-  constructor(@Inject(EVENT_CONF) conf: EventConfig, public eventService: RencontresService) {
+  constructor(
+    @Inject(EVENT_CONF) conf: EventConfig,
+    public eventService: RencontresService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
     this.setEventConfig(conf);
   }
 
@@ -23,8 +29,16 @@ export class RencontresComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.evenement = this.eventService.defaultEvent(this.eventConfig.evenements, this.eventConfig.isPast);
-    this.teaserEvents = this.eventService.teaserEvents(this.eventConfig.isPast, this.eventConfig.evenements);    
+    this.evenement = this.eventService.defaultEvent(
+      this.eventConfig.evenements,
+      this.eventConfig.isPast,
+      history.state
+    );
+    
+    this.teaserEvents = this.eventService.teaserEvents(
+      this.eventConfig.isPast,
+      this.eventConfig.evenements
+    );
   }
 
   myFilter = (d: Date | null): boolean => {
@@ -46,7 +60,10 @@ export class RencontresComponent implements OnInit {
   };
 
   selectedEvent(date: Date | null) {
-    this.evenement = this.eventService.selectedEvent(date, this.eventConfig.evenements);
+    this.evenement = this.eventService.selectedEvent(
+      date,
+      this.eventConfig.evenements
+    );
   }
 
   isNotEmpty(obj: any) {
