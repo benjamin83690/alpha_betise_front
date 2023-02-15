@@ -2,19 +2,24 @@
   <mat-card-header>
     <div class="box-img me-1 mb-2">
       <img
-      *ngIf="evenement.livre.photo"
+        *ngIf="evenement.livre && evenement.livre.photosLivre.length"
         mat-card-sm-image
-        src="{{ evenement.livre.photo }}"
+        src="{{ evenement.livre.photosLivre[0].pathUrl }}"
         class="rounded"
       />
-      <img *ngIf="!evenement.livre.photo" mat-card-sm-image src="https://urlz.fr/kGzQ" class="rounded" />
+      <img
+        *ngIf="!evenement.livre || !evenement.livre.photosLivre.length"
+        mat-card-sm-image
+        src="https://urlz.fr/kGzQ"
+        class="rounded"
+      />
     </div>
     <mat-card-title-group class="w-100 align-items-center">
       <mat-card-title class="fs-3">{{ evenement.titre }}</mat-card-title>
       <mat-card-subtitle
         class="fs-5"
         [ngStyle]="{ color: eventConfig.customColor }"
-        >{{ eventService.getFullDate(evenement.date) }}</mat-card-subtitle
+        >{{ evenement.date | date : "dd.MM.yyyy" }}</mat-card-subtitle
       >
       <div>
         <p
@@ -44,7 +49,7 @@
     <div class="filtre rounded"></div>
     <div style="z-index: 3; position: inherit">
       <p class="fs-4 fst-italic">Public: {{ evenement.agePublic }}</p>
-      <p class="fw-bold">{{ evenement.livre.titre }}</p>
+      <p class="fw-bold" *ngIf="evenement.livre">{{ evenement.livre.titre }}</p>
     </div>
     <div class="d-flex justify-content-end">
       <a

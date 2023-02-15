@@ -12,7 +12,7 @@ export class RencontresService {
     return (
       events.filter(
         (event) =>
-          event.date.toLocaleDateString('fr-FR') ==
+        new Date(event.date).toLocaleDateString('fr-FR') ==
           day.toLocaleDateString('fr-FR')
       ).length > 0
     );
@@ -22,7 +22,7 @@ export class RencontresService {
     return events.filter(
       (event) =>
         date?.toLocaleDateString('fr-FR') ==
-        event.date.toLocaleDateString('fr-FR')
+        new Date(event.date).toLocaleDateString('fr-FR')
     )[0];
   }
 
@@ -40,13 +40,13 @@ export class RencontresService {
 
   firstEvents(events:any[]) {
     return events
-      .sort((a, b) => a.date - b.date)
+      .sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
       .slice(0, 3);
   }
 
   lastEvents(events: any[]) {
     return events
-      .sort((a, b) => a.date - b.date)
+      .sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
       .reverse()
       .slice(0, 3);
   }
@@ -56,12 +56,14 @@ export class RencontresService {
       return history;
     }
     if (isPast) {
-      return events.sort((a, b) => a.date - b.date).reverse()[0];
+      return events.sort((a, b) => Date.parse(a.date) - Date.parse(b.date)).reverse()[0];
     } 
-    return events.sort((a, b) => a.date - b.date)[0];
+    return events.sort((a, b) => Date.parse(a.date) - Date.parse(b.date))[0];
   }
 
   teaserEvents(isPast: boolean, events: any[]) {
+    console.log(events);
+    
     return isPast ? this.lastEvents(events) : this.firstEvents(events);
   }
 
