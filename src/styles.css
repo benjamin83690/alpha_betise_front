@@ -17,10 +17,16 @@ body {
 button.custom-date-class {
   background-color: orange;
   border-radius: 100%;
+  border: solid 1px lightgrey;
 }
 
 button.custom-date-class2 {
   background-color: tomato;
+  border-radius: 100%;
+}
+
+button.custom-date-selected {
+  background-color: grey;
   border-radius: 100%;
 }
 

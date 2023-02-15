@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
-import { Router, ActivatedRoute } from '@angular/router';
 import { EventConfig, EVENT_CONF } from 'src/app/configs/EventConfig';
+import { CrudService } from 'src/app/services/crudService/crud.service';
 import { RencontresService } from 'src/app/services/rencontresService/rencontres.service';
 
 @Component({
@@ -11,15 +11,14 @@ import { RencontresService } from 'src/app/services/rencontresService/rencontres
 })
 export class RencontresComponent implements OnInit {
   eventConfig!: EventConfig;
-  selected!: Date | null;
   evenement: any = {};
   teaserEvents!: any[];
+  myFilter!: (date: Date) => boolean;
 
   constructor(
     @Inject(EVENT_CONF) conf: EventConfig,
     public eventService: RencontresService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
+    private crudService: CrudService
   ) {
     this.setEventConfig(conf);
   }
@@ -29,27 +28,35 @@ export class RencontresComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.evenement = this.eventService.defaultEvent(
-      this.eventConfig.evenements,
-      this.eventConfig.isPast,
-      history.state
-    );
-    
-    this.teaserEvents = this.eventService.teaserEvents(
-      this.eventConfig.isPast,
-      this.eventConfig.evenements
-    );
+    this.crudService.getAll(this.eventConfig.ApiRoute).subscribe((data) => {
+      // data.forEach(item => this.eventConfig.evenements.push(item));
+      this.eventConfig.evenements = data;
+      this.evenement = this.eventService.defaultEvent(
+        this.eventConfig.evenements,
+        this.eventConfig.isPast,
+        history.state
+      );
+
+      this.myFilter = (d: Date | null): boolean => {
+        return this.eventService.myFilter(d, this.eventConfig.evenements);
+      };
+
+      this.teaserEvents = this.eventService.teaserEvents(
+        this.eventConfig.isPast,
+        this.eventConfig.evenements
+      );
+    });
   }
 
-  myFilter = (d: Date | null): boolean => {
-    return this.eventService.myFilter(d, this.eventConfig.evenements);
-  };
+  formatDate(str: string) {
+    return new Date(str);
+  }
 
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     if (view === 'month') {
       return this.eventConfig.evenements.filter(
         (event) =>
-          event.date.toLocaleDateString('fr-FR') ==
+          new Date(event.date).toLocaleDateString('fr-FR') ==
           cellDate.toLocaleDateString('fr-FR')
       ).length > 0
         ? `${this.eventConfig.customClass}`

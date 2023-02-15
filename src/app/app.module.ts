@@ -19,6 +19,7 @@ import { InscriptionEvenementComponent } from './components/inscription-evenemen
 import { ConseilsLectureComponent } from './components/conseils-lecture/conseils-lecture.component';
 import { MaterialModule } from './material/material.module';
 import { TeaserEvenementComponent } from './components/teaser-evenement/teaser-evenement.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { TeaserEvenementComponent } from './components/teaser-evenement/teaser-e
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
