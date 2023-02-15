@@ -15,11 +15,12 @@
           <h3 class="m-0">Evenements {{ eventConfig.textTime }}</h3>
         </div>
         <mat-calendar
+          #calendar
           [dateClass]="dateClass"
           [dateFilter]="myFilter"
           (selectedChange)="selectedEvent($event)"
-          [startAt]="formatDate(evenement.date)"
-        ></mat-calendar>
+          [selected]="formatDate(evenement.date)"
+          ></mat-calendar>
       </mat-card>
       <a
         *ngIf="!eventConfig.isPast"

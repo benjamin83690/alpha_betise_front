@@ -13,6 +13,9 @@ export class LivreComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.livre = {
+      photosLivre: ['https://loremflickr.com/640/360', 'https://loremflickr.com/640/360']
+    }
   }
 
 }
