@@ -3,7 +3,7 @@ import { EventConfig } from './EventConfig';
 export const PastEventConfig: EventConfig = {
   evenements: [],
   selectedEvent: [],
-  ApiRoute: '',
+  ApiRoute: '/evenements',
   textTitle: 'Précédemment :',
   textTime: 'passés :',
   text: '',

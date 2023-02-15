@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { MatCalendar, MatCalendarCellClassFunction, MatDatepicker } from '@angular/material/datepicker';
 import { EventConfig, EVENT_CONF } from 'src/app/configs/EventConfig';
 import { CrudService } from 'src/app/services/crudService/crud.service';
 import { RencontresService } from 'src/app/services/rencontresService/rencontres.service';
@@ -13,7 +13,9 @@ export class RencontresComponent implements OnInit {
   eventConfig!: EventConfig;
   evenement: any = {};
   teaserEvents!: any[];
+  startDate!: Date;
   myFilter!: (date: Date) => boolean;
+  @ViewChild('calendar') calendar!: MatCalendar<any>;
 
   constructor(
     @Inject(EVENT_CONF) conf: EventConfig,
@@ -30,12 +32,14 @@ export class RencontresComponent implements OnInit {
   ngOnInit(): void {
     this.crudService.getAll(this.eventConfig.ApiRoute).subscribe((data) => {
       // data.forEach(item => this.eventConfig.evenements.push(item));
+      
       this.eventConfig.evenements = data;
       this.evenement = this.eventService.defaultEvent(
         this.eventConfig.evenements,
         this.eventConfig.isPast,
         history.state
       );
+      this.calendar.activeDate = new Date(this.evenement.date);
 
       this.myFilter = (d: Date | null): boolean => {
         return this.eventService.myFilter(d, this.eventConfig.evenements);
@@ -48,7 +52,7 @@ export class RencontresComponent implements OnInit {
     });
   }
 
-  formatDate(str: string) {
+  formatDate(str: string): Date {
     return new Date(str);
   }
 
@@ -73,11 +77,11 @@ export class RencontresComponent implements OnInit {
     );
   }
 
-  isNotEmpty(obj: any) {
-    return Object.keys(obj).length;
-  }
+  // isNotEmpty(obj: any) {
+  //   return Object.keys(obj).length;
+  // }
 
-  getFullDate(d: Date) {
-    this.eventService.getFullDate(d);
-  }
+  // getFullDate(d: Date) {
+  //   this.eventService.getFullDate(d);
+  // }
 }
