@@ -1,50 +1,37 @@
-<mat-card class="card shadow-sm" style="width: 20rem; height: auto;">
-  <div id="carouselExample" class="carousel slide">
-    <div class="carousel-inner">
-      <div
-        *ngFor="
-          let photo of livre.photosLivre;
-          let i = index;
-          let isFirst = first
-        "
-        class="carousel-item"
-        [ngClass]="{ active: isFirst }"
+<mat-card class="example-card col-md-12">
+  <mat-card-header>
+    <mat-card-title-group class="w-100">
+      <mat-card-title>{{ livre.titre }}</mat-card-title>
+      <div class="box-img">
+        <img
+          mat-card-sm-image
+          src="{{ livre.photosLivre[0].pathUrl }}"
+          class="img rounded"
+        />
+      </div>
+      <mat-card-subtitle
+        >{{ livre.auteur }} - {{ livre.editeur.nom }}</mat-card-subtitle
       >
-        <img src="{{ photo }}" class="card-img-top" alt="..." style="height: 20vh;" />
-      </div>
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content class="p-2 rounded">
+    <p>{{ livre.resume }}</p>
+    <div class="d-flex align-items-center">
+      <p class="m-0">Note des lecteurs:</p>
+      <mat-icon
+        class="text-warning"
+        *ngFor="let star of filledStars(livre.commentairesUtilsateur)"
+        >star</mat-icon
+      >
+      <mat-icon
+        class="text-warning"
+        *ngFor="let emptyStar of emptyStars(livre.commentairesUtilsateur)"
+        >star_border</mat-icon
+      >
     </div>
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#carouselExample"
-      data-bs-slide="prev"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#carouselExample"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-  <div class="card-body" style="box-sizing: border-box;">
-    <div class="price shadow-sm">
-      <p class="card-text">{{ livre.prix }}&euro;</p>
+    <p class="fst-italic">{{ livre.libraireCom }}</p>
+    <div class="d-flex justify-content-end">
+      <a class="btn btn-outline-primary btn-sm" routerLink="/produit/{{livre.isbn}}">Voir</a>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <h3 class="card-text text-warning">{{ livre.titre }}</h3>
-        <h4 class="card-text text-muted my-2">{{ livre.auteur }}</h4>
-      </div>
-      <div class="col-md-12">
-        <p class="card-text"><span class="fw-bold">Resume :</span> <br><span class="fst-italic">{{ livre.resume }}</span></p>
-      </div>
-    </div>
-    <a href="#" class="btn btn-primary ms-auto mt-4">Voir plus de livres</a>
-  </div>
+  </mat-card-content>
 </mat-card>

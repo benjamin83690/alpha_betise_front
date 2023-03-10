@@ -9,7 +9,7 @@ import { PastEventConfig } from './configs/PastEventConfig';
 import { ProduitComponent } from './components/produit/produit.component';
 
 const routes: Routes = [
-  { path: 'produit', component: ProduitComponent },
+  { path: 'produit/:isbn', component: ProduitComponent },
   {
     path: 'evenements',
     component: RencontresComponent,

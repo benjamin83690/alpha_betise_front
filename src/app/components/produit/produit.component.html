@@ -1,24 +1,24 @@
-<div class="container-fluid mt-4">
+<div class="container-fluid mt-4" *ngIf="livre">
     <div class="container mb-5">
         <div class="row justify-content-between mb-5">
             <div class="img-container col-12 col-md-3">
-                <img src="https://www.lalibrairie.com/cache/img/livres/835/9782330174835.webp" class="img-produit"
+                <img src="{{livre.photosLivre[0].pathUrl}}" class="img-produit"
                     alt="photo de couverture">
-                <span class="text-brand-1 text-decoration-underline" data-bs-toggle="modal"
+                <p class="text-brand-1 text-decoration-underline" data-bs-toggle="modal"
                     data-bs-target="#infosTechniquesModal">
                     Lire les informations techniques
-                </span>
+                </p>
             </div>
             <div class="fiche-content col-12 col-md-9">
                 <div>
                     <h1>{{ livre.titre }}</h1>
                     <h2>De
-                        <a href="#">{{ livre.auteur.nom }}</a>
+                        <a href="#">{{ livre.auteurs[0].nom }}</a>
                         chez
                         <a href="#">{{ livre.editeur.nom }}</a>
                         <br>
-                        <span *ngIf="livre.collection.nom"> Collection : </span><a href="#">{{
-                            livre.collection.nom }}</a>
+                        <span *ngIf="livre.collectionLivre.nom"> Collection : </span><a href="#">{{
+                            livre.collectionLivre.nom }}</a>
                     </h2>
                     <div class="row mt-3">
                         <div class="row">
@@ -26,7 +26,7 @@
                                 <span class="text-nowrap">{{ livre.nbPages }} pages</span>
                             </div>
                             <div class="date-parution col-12 col-sm-6 text-sm-start border-start mb-5">
-                                Paru le {{ livre.dateParution }}
+                                Paru le {{ livre.datePublication | date:'dd.MM.yyyy' }}
                             </div>
                             <div>
                                 <span class="prix">{{ livre.prix.toFixed(2) }} €</span>
@@ -34,7 +34,7 @@
                             <div class="add-to-cart mb-4">
                                 <button type="button" class="btn btn-primary btn-lg" (click)="addPanier(livre)">Ajouter à votre panier</button>
                                 <br>
-                                <span>{{ livre.etatStock.etat }}</span>
+                                <span class="text-success">{{ livre.etatStock.etat }}</span>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
             <div class="tab-pane fade" id="avis-clients" role="tabpanel" aria-labelledby="pills-contact-tab"
                 tabindex="0">
                 <section>
-                    <p>{{ livre.commentaires.commentaire }}</p>
+                    <p>{{ livre.commentairesUtilsateur.commentaire }}</p>
                 </section>
             </div>
             <div class="tab-pane fade" id="meme-auteur" role="tabpanel" aria-labelledby="pills-disabled-tab"
@@ -79,7 +79,7 @@
 </div>
 
 <div class="modal fade" id="infosTechniquesModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
-    tabindex="-1">
+    tabindex="-1" *ngIf="livre">
     <div class="modal-dialog modal-dialog-centered modal-fullscreen-sm-down">
         <div class="modal-content">
             <div class="modal-header">

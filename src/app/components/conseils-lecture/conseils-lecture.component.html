@@ -16,43 +16,9 @@
   </mat-form-field>
   <div class="row">
     <div class="col-lg-3 mb-3 col-md-4" *ngFor="let livre of obs | async">
-      <mat-card class="example-card col-md-12">
-        <mat-card-header>
-          <mat-card-title-group class="w-100">
-            <mat-card-title>{{ livre.titre }}</mat-card-title>
-            <div class="box-img">
-              <img
-                mat-card-sm-image
-                src="{{ livre.photosLivre[0] }}"
-                class="img rounded"
-              />
-            </div>
-            <mat-card-subtitle
-              >{{ livre.auteur }} - {{ livre.editeur }}</mat-card-subtitle
-            >
-          </mat-card-title-group>
-        </mat-card-header>
-        <mat-card-content class="p-2 rounded">
-          <p>{{ livre.resume }}</p>
-          <div class="d-flex align-items-center">
-            <p class="m-0">Note des lecteurs:</p>
-            <mat-icon
-              class="text-warning"
-              *ngFor="let star of utils.filledStars(livre.commentairesUtilsateur)"
-              >star</mat-icon
-            >
-            <mat-icon
-              class="text-warning"
-              *ngFor="let emptyStar of utils.emptyStars(livre.commentairesUtilsateur)"
-              >star_border</mat-icon
-            >
-          </div>
-          <p class="fst-italic">{{ livre.libraireCom }}</p>
-          <div class="d-flex justify-content-end">
-            <button class="btn btn-outline-primary btn-sm">Voir</button>
-          </div>
-        </mat-card-content>
-      </mat-card>
+      <app-livre
+        [livre]="livre"
+      ></app-livre>
     </div>
   </div>
   <mat-paginator

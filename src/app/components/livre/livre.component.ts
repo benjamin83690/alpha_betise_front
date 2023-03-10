@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { UtilsService } from 'src/app/services/utilsService/utils.service';
 
 @Component({
   selector: 'app-livre',
@@ -10,12 +11,19 @@ export class LivreComponent implements OnInit {
   @Input() livre: any = {};
   index!: number;
 
-  constructor() { }
+  constructor(private utils: UtilsService) { }
 
   ngOnInit(): void {
-    this.livre = {
-      photosLivre: ['https://loremflickr.com/640/360', 'https://loremflickr.com/640/360']
-    }
+    console.log(this.livre);
+    
   }
 
+
+  filledStars(comments: any[]) {
+    return this.utils.filledStars(comments);
+  }
+
+  emptyStars(comments: any[]) {
+    return this.utils.emptyStars(comments);
+  }
 }
