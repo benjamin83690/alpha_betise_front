@@ -5,25 +5,83 @@
       class="example-icon"
       aria-label="Example icon-button with menu icon"
       color="accent"
+      (click)="drawer.toggle()"
     >
       <mat-icon>menu</mat-icon>
     </button>
     <span class="me-2">Alpha Betise</span>
-    <a mat-raised-button routerLink="" class="me-2 bg-secondary">Accueil</a>
-    <a mat-raised-button routerLink="/evenements" class="me-2 bg-secondary"
-      >Rencontres</a
-    >
-    <a
-      mat-raised-button
-      routerLink="/conseils-lecture"
-      class="me-2 bg-secondary"
-      >Conseils lecture</a
-    >
-    <a mat-raised-button routerLink="" class="me-2 bg-secondary">Librairie</a>
-    <a mat-raised-button routerLink="" class="me-2 bg-secondary">Contact</a>
+    <div class="logo" style="width: 70px">
+      <img src="/assets/img/logos/Logo-black-v.svg" alt="logo Alpha betise" />
+    </div>
+
     <span class="example-spacer"></span>
+    <button mat-button [matMenuTriggerFor]="admin" *ngIf="isAdmin">
+      Back Office
+      <mat-icon>supervised_user_circle</mat-icon>
+    </button>
+    <mat-menu #admin="matMenu">
+      <a mat-menu-item routerLink="/admin/livre"
+        >Gerer les livres <mat-icon>settings</mat-icon></a
+      >
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="menu">
+      Profil
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <a *ngIf="!userLogged" mat-menu-item routerLink="/inscription"
+        >Inscription <mat-icon>how_to_reg</mat-icon></a
+      >
+      <a *ngIf="!userLogged" mat-menu-item routerLink="/connexion"
+        >Connexion <mat-icon>settings_power</mat-icon></a
+      >
+      <a *ngIf="userLogged" mat-menu-item routerLink="/profil"
+        >Mon compte <mat-icon matSuffix>perm_identity</mat-icon></a
+      >
+      <a
+        *ngIf="userLogged"
+        mat-menu-item
+        routerLink="/connexion"
+        (click)="logout()"
+        >Deconnexion <mat-icon matSuffix>power_settings_new</mat-icon></a
+      >
+    </mat-menu>
     <app-panier></app-panier>
   </mat-toolbar-row>
 </mat-toolbar>
 
+<mat-sidenav-container class="example-container" autosize>
+  <mat-sidenav #drawer class="example-sidenav" mode="over" position="start">
+    <a
+      mat-raised-button
+      routerLink="/accueil"
+      class="m-2 d-block"
+      color="primary"
+      ><mat-icon matPrefix>home</mat-icon> Accueil</a
+    >
+    <a
+      mat-raised-button
+      routerLink="/evenements"
+      class="m-2 d-block"
+      color="primary"
+      ><mat-icon> insert_invitation</mat-icon> Rencontres</a
+    >
+    <a
+      mat-raised-button
+      routerLink="/conseils-lecture"
+      class="m-2 d-block"
+      color="primary"
+      ><mat-icon>library_books</mat-icon> Les livres</a
+    >
+    <a mat-raised-button routerLink="" class="m-2 d-block" color="primary"
+      ><mat-icon matPrefix> store_mall_directory</mat-icon> Librairie
+    </a>
+    <a mat-raised-button routerLink="" class="m-2 d-block" color="primary"
+      ><mat-icon matPrefix>question_answer</mat-icon> Contact</a
+    >
+  </mat-sidenav>
 
+  <mat-sidenav-content class="example-sidenav-content">
+    <router-outlet class="m-5"></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -7,3 +7,19 @@
     z-index: 10;
     top: 0;
   }
+
+  mat-sidenav-container {
+    height: 100%;
+    padding: 15px;
+  }
+
+  .mat-drawer-content {
+    position: relative;
+    z-index: 1;
+    display: block;
+    overflow: unset !important;
+}
+
+.mat-drawer {
+  left: 0;
+}

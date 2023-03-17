@@ -31,4 +31,12 @@ export class CrudService {
   delete(endpoint: string, id: number):Observable<any> {
     return this.http.delete(`${this.url + endpoint}/${id}`);
   }
+
+  getEvents(endpoint: string):Observable<any[]> {
+    return this.http.get<any[]>(`${this.url + endpoint}`);
+  }
+
+  getUser(endpoint: string, email: string):Observable<any> {
+    return this.http.get<any>(`${this.url + endpoint}/${email}`);
+  }
 }

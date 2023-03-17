@@ -20,6 +20,9 @@ import { ConseilsLectureComponent } from './components/conseils-lecture/conseils
 import { MaterialModule } from './material/material.module';
 import { TeaserEvenementComponent } from './components/teaser-evenement/teaser-evenement.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
+import { InscriptionComponent } from './components/inscription/inscription.component';
+import { ProfilComponent } from './components/profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import { HttpClientModule } from '@angular/common/http';
     InscriptionEvenementComponent,
     ConseilsLectureComponent,
     TeaserEvenementComponent,
+    LoginComponent,
+    InscriptionComponent,
+    ProfilComponent,
   ],
   imports: [
     BrowserModule,

@@ -7,8 +7,16 @@ import { EVENT_CONF } from './configs/EventConfig';
 import { NextEventConfig } from './configs/NextEventConfig';
 import { PastEventConfig } from './configs/PastEventConfig';
 import { ProduitComponent } from './components/produit/produit.component';
+import { LoginComponent } from './components/login/login.component';
+import { InscriptionComponent } from './components/inscription/inscription.component';
+import { AccueilComponent } from './components/accueil/accueil.component';
+import { ProfilComponent } from './components/profil/profil.component';
 
 const routes: Routes = [
+  {path: 'connexion', component: LoginComponent},
+  {path: 'profil', component: ProfilComponent},
+  {path: 'accueil', component: AccueilComponent},
+  {path: 'inscription', component: InscriptionComponent},
   { path: 'produit', component: ProduitComponent },
   {
     path: 'evenements',
