@@ -30,7 +30,7 @@ export class RencontresComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.crudService.getAll(this.eventConfig.ApiRoute).subscribe((data) => {
+    this.crudService.getEvents(this.eventConfig.ApiRoute).subscribe((data) => {
       // data.forEach(item => this.eventConfig.evenements.push(item));
       
       this.eventConfig.evenements = data;

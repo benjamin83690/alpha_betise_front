@@ -3,7 +3,7 @@ import { EventConfig } from "./EventConfig";
 export const NextEventConfig: EventConfig = {
   evenements: [],
   selectedEvent: [],
-  ApiRoute: "/evenements",
+  ApiRoute: "/evenements/next-event",
   text: "",
   customClass: "custom-date-class",
   isPast: false,
