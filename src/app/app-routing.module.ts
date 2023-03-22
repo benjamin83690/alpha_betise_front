@@ -11,11 +11,17 @@ import { LoginComponent } from './components/login/login.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
 import { AccueilComponent } from './components/accueil/accueil.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import { LivresComponent } from './components/back-office/livres/livres.component';
+import { InterditComponent } from './components/interdit/interdit.component';
+import { IsAdminConnectedGuard } from './guards/backOffice/is-admin-connected.guard';
+import { AddLivreComponent } from './components/back-office/add-livre/add-livre.component';
+import { UpdateLivreComponent } from './components/back-office/update-livre/update-livre.component';
 
 const routes: Routes = [
+  {path: '', component: AccueilComponent},
+  {path: 'accueil', component: AccueilComponent},
   {path: 'connexion', component: LoginComponent},
   {path: 'profil', component: ProfilComponent},
-  {path: 'accueil', component: AccueilComponent},
   {path: 'inscription', component: InscriptionComponent},
   { path: 'produit', component: ProduitComponent },
   {
@@ -34,6 +40,16 @@ const routes: Routes = [
     component: InscriptionEvenementComponent,
     providers: [{ provide: EVENT_CONF, useValue: NextEventConfig }],
   },
+  {path: 'interdit', component: InterditComponent},
+  {path: 'back-office',
+  canActivate: [IsAdminConnectedGuard],
+  children: [
+    {path: 'gestion-livre', component: LivresComponent},
+    {path: 'ajouter-livre', component: AddLivreComponent},
+    {path: 'modifier-livre/:isbn', component: UpdateLivreComponent},
+
+  ]
+}
 ];
 
 @NgModule({

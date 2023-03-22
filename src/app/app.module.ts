@@ -23,6 +23,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import { LivresComponent } from './components/back-office/livres/livres.component';
+import { InterditComponent } from './components/interdit/interdit.component';
+import { AddLivreComponent } from './components/back-office/add-livre/add-livre.component';
+import { UpdateLivreComponent } from './components/back-office/update-livre/update-livre.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,10 @@ import { ProfilComponent } from './components/profil/profil.component';
     LoginComponent,
     InscriptionComponent,
     ProfilComponent,
+    LivresComponent,
+    InterditComponent,
+    AddLivreComponent,
+    UpdateLivreComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@
   mat-sidenav-container {
     height: 100%;
     padding: 15px;
+    overflow: auto;
   }
 
   .mat-drawer-content {
