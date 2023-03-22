@@ -17,7 +17,6 @@ export class InscriptionComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private crudService: CrudService,
-    private authService: AuthService,
     private router: Router
   ) {
     this.userForm = this._formBuilder.group({

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { CrudService } from '../crudService/crud.service';
 
 @Injectable({
@@ -15,12 +15,13 @@ export class AuthService {
   roles!:string[];
   userLoggedIn:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isAdmin:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  user:BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private helper = new JwtHelperService();
 
   constructor(private router: Router, private crudService: CrudService) {}
 
   saveToken(jwt: string) {
-    localStorage.setItem('jwt', jwt);
+    localStorage.setItem('jwt', JSON.stringify(jwt));
     localStorage.setItem('userIsLoggedIn', JSON.stringify(true));
     this.token = jwt;
     this.isloggedIn = true;
@@ -34,7 +35,7 @@ export class AuthService {
     this.roles = decodedToken.role;
     this.loggedUser = decodedToken.sub;
     this.crudService.getUser('/utilisateur', this.loggedUser).subscribe(data => {
-      localStorage.setItem('user', JSON.stringify(data));
+      localStorage.setItem('userEmail', JSON.stringify(data.email));
       if(data.role == 'ADMIN'){
         this.isAdmin.next(true);
       }
@@ -45,4 +46,17 @@ export class AuthService {
     return this.token;
   }
 
+  isAdminConnected():boolean{
+    let token = JSON.parse(localStorage.getItem('jwt') || '');
+    let role;
+    
+    if(token != '') {
+      const decodedToken = this.helper.decodeToken(token);
+      role = decodedToken.role;
+      if(role == "ADMIN") {
+        return true;
+      }
+    }
+    return false;
+  }
 }

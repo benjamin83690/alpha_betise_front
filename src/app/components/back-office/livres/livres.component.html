@@ -1,0 +1,31 @@
+<div class="container">
+    <a class="btn btn-primary my-2 float-end" routerLink="/back-office/ajouter-livre">Ajouter</a>
+  <table class="table border rounded shadow-sm">
+    <thead>
+      <tr>
+        <th *ngFor="let header of displayedColumns" scope="col">
+          {{ header }}
+        </th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let livre of obs | async; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ livre.titre }}</td>
+        <td>{{ livre.prix }}</td>
+        <td>{{ livre.nbPages }}</td>
+        <td>{{ livre.nbExemplaires }}</td>
+        <td>
+          <button class="btn btn-sm btn-outline-primary">Voir</button>
+          <a class="btn btn-sm btn-outline-warning mx-2" routerLink="/back-office/modifier-livre/{{livre.isbn}}">Modifier</a>
+          <button class="btn btn-sm btn-outline-danger" (click)="deleteBook(livre.isbn)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[4, 8, 16, 32]"
+    [pageSize]="8"
+  ></mat-paginator>
+</div>

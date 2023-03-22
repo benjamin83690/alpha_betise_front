@@ -1,0 +1,248 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Modifier un livre</h4>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="livreForm" class="d-flex flex-column">
+        <div class="row">
+          <div class="col-md-6 d-flex flex-wrap flex-column">
+            <mat-form-field appearance="fill">
+              <mat-label>titre</mat-label>
+              <input
+                matInput
+                placeholder="Placeholder"
+                formControlName="titre"
+                type="text"
+                [value]="livre.titre"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>prix</mat-label>
+              <input
+                matInput
+                placeholder="Placeholder"
+                formControlName="prix"
+                type="number"
+                value="{{ livre.prix }}"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>resume</mat-label>
+              <input
+                matInput
+                placeholder="Placeholder"
+                formControlName="resume"
+                type="text"
+                value="{{ livre.resume }}"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>nbPages</mat-label>
+              <input
+                matInput
+                placeholder="Placeholder"
+                formControlName="nbPages"
+                type="number"
+                value="{{ livre.nbPages }}"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>datePublication</mat-label>
+              <input
+                matInput
+                placeholder="Placeholder"
+                formControlName="datePublication"
+                type="date"
+                value="{{ livre.datePublication }}"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>poids</mat-label>
+              <input
+                matInput
+                placeholder="Placeholder"
+                formControlName="poids"
+                type="number"
+                value="{{ livre.poids }}"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>nbExemplaires</mat-label>
+              <input
+                matInput
+                placeholder="Placeholder"
+                formControlName="nbExemplaires"
+                type="number"
+                value="{{ livre.nbExemplaires }}"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>longueur</mat-label>
+              <input
+                matInput
+                placeholder="Placeholder"
+                formControlName="longueur"
+                type="number"
+                value="{{ livre.longueur }}"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>largeur</mat-label>
+              <input
+                matInput
+                placeholder="Placeholder"
+                formControlName="largeur"
+                type="number"
+                value="{{ livre.largeur }}"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 d-flex flex-wrap flex-column">
+            <mat-form-field appearance="fill">
+              <mat-label>epaisseur</mat-label>
+              <input
+                matInput
+                placeholder="Placeholder"
+                formControlName="epaisseur"
+                type="number"
+                value="{{ livre.epaisseur }}"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Categorie</mat-label>
+              <mat-select
+                formControlName="categorieLivre"
+                name="categorieLivre"
+                [(value)]="livre.categorieLivre"
+                [compareWith]="compareFn"
+              >
+                <mat-option
+                  *ngFor="let categorie of categories"
+                  [value]="categorie"
+                  value="{{ categorie }}"
+                >
+                  {{ categorie.libelle }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>collectionLivre</mat-label>
+              <mat-select
+                formControlName="collectionLivre"
+                name="collectionLivre"
+                [(value)]="livre.collectionLivre"
+                [compareWith]="compareFn"
+              >
+                <mat-option
+                  *ngFor="let collection of collections"
+                  [value]="collection"
+                  value="{{ livre.collectionLivre }}"
+                >
+                  {{ collection.nom }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>editeurs</mat-label>
+              <mat-select
+                formControlName="editeur"
+                name="editeur"
+                [(value)]="livre.editeur"
+                [compareWith]="compareFn"
+              >
+                <mat-option
+                  *ngFor="let editeur of editeurs"
+                  [value]="editeur"
+                  value="{{ livre.editeur }}"
+                >
+                  {{ editeur.nom }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>photo Livre</mat-label>
+              <input
+                matInput
+                placeholder="Placeholder"
+                formControlName="photoLivre"
+                type="text"
+                value="{{ livre.photoLivre }}"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>langue</mat-label>
+              <mat-select
+                name="langue"
+                formControlName="langue"
+                [(value)]="livre.langue"
+                [compareWith]="compareFn"
+              >
+                <mat-option *ngFor="let langue of langues" [value]="langue">
+                  {{ langue.langue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Etat stock</mat-label>
+              <mat-select
+                formControlName="etatStock"
+                name="etatStock"
+                [(value)]="livre.etatStock"
+                [compareWith]="compareFn"
+              >
+                <mat-option *ngFor="let etat of etats" [value]="etat">
+                  {{ etat.etat }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>auteurs</mat-label>
+              <mat-select
+                formControlName="auteurs"
+                name="auteurs"
+                multiple
+                [(value)]="livre.auteurs"
+                [compareWith]="compareFn"
+              >
+                <mat-option *ngFor="let auteur of auteurs" [value]="auteur">
+                  {{ auteur.nom }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>isbn</mat-label>
+              <input
+                matInput
+                placeholder="Placeholder"
+                formControlName="isbn"
+                type="number"
+                value="{{ livre.isbn }}"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div
+          class="d-flex justify-content-center align-items-center flex-column"
+        >
+          <button
+            mat-raised-button
+            class="m-2"
+            color="primary"
+            (click)="submitLivre()"
+          >
+            Soumettre
+            <mat-icon>send</mat-icon>
+          </button>
+          <div class="d-flex" *ngIf="pending">
+            <small class="me-2 text-muted fst-italic"
+              ><mat-icon>verified_user</mat-icon> Envoie en cours
+            </small>
+            <mat-spinner [diameter]="20" color="primary"></mat-spinner>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

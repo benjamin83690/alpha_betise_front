@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { CrudService } from 'src/app/services/crudService/crud.service';
 
@@ -27,14 +27,14 @@ export class HeaderComponent implements OnInit {
     this.authService.isAdmin.subscribe(val => {
       this.isAdmin = val;
     })
-    let user = JSON.parse(localStorage.getItem('user') || 'null');
-    this.isAdmin = user.role == 'ADMIN' ? true:  false;
+    
+    this.isAdmin = this.authService.isAdminConnected();
   }
 
   logout() {
     localStorage.removeItem('jwt');
     localStorage.removeItem('userIsLoggedIn');
-    localStorage.removeItem('user');
+    localStorage.removeItem('userEmail');
     this.userLogged = false;
     this.isAdmin = false;
   }

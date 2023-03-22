@@ -15,12 +15,12 @@
         {{ evenement.agePublic }}</mat-card-subtitle
       >
       <img
-        *ngIf="evenement.livre && evenement.livre.photosLivre.length"
+        *ngIf="evenement.livre && evenement.livre.photoLivre"
         mat-card-sm-image
-        src="{{evenement.livre.photosLivre[0].pathUrl}}"
+        src="{{evenement.livre.photoLivre}}"
       />
       <img
-        *ngIf="!evenement.livre || !evenement.livre.photosLivre.length"
+        *ngIf="!evenement.livre || !evenement.livre.photoLivre"
         mat-card-sm-image
         src="https://material.angular.io/assets/img/examples/shiba2.jpg"
       />
