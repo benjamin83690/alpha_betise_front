@@ -19,7 +19,7 @@ import { InscriptionEvenementComponent } from './components/inscription-evenemen
 import { ConseilsLectureComponent } from './components/conseils-lecture/conseils-lecture.component';
 import { MaterialModule } from './material/material.module';
 import { TeaserEvenementComponent } from './components/teaser-evenement/teaser-evenement.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { InscriptionComponent } from './components/inscription/inscription.component';
 import { ProfilComponent } from './components/profil/profil.component';
@@ -27,6 +27,8 @@ import { LivresComponent } from './components/back-office/livres/livres.componen
 import { InterditComponent } from './components/interdit/interdit.component';
 import { AddLivreComponent } from './components/back-office/add-livre/add-livre.component';
 import { UpdateLivreComponent } from './components/back-office/update-livre/update-livre.component';
+import { TokenInterceptor } from './tokenInterceptor/token.interceptor';
+import { SnackbarComponent } from './components/shared/snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { UpdateLivreComponent } from './components/back-office/update-livre/upda
     InterditComponent,
     AddLivreComponent,
     UpdateLivreComponent,
+    SnackbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,13 @@ import { UpdateLivreComponent } from './components/back-office/update-livre/upda
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

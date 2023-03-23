@@ -17,6 +17,7 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatProgressSpinnerModule,
     MatSelectModule,
     MatMenuModule,
+    MatSnackBarModule
   ],
   exports: [
     MatBadgeModule,
@@ -58,6 +60,7 @@ import {MatMenuModule} from '@angular/material/menu';
     MatProgressSpinnerModule,
     MatSelectModule,
     MatMenuModule,
+    MatSnackBarModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'fr'},

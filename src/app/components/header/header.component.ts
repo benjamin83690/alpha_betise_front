@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
       this.isAdmin = val;
     })
     
-    this.isAdmin = this.authService.isAdminConnected();
+    this.isAdmin = this.authService.exctractKeyJwt("role") == "ADMIN";
   }
 
   logout() {

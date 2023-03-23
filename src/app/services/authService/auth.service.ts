@@ -43,20 +43,27 @@ export class AuthService {
   }
 
   getToken():string {
+    let token = localStorage.getItem('jwt')  ? JSON.parse(localStorage.getItem('jwt') || '') : '';
+    if(token != '')
+    {
+      return token;
+    }
     return this.token;
   }
 
-  isAdminConnected():boolean{
-    let token = JSON.parse(localStorage.getItem('jwt') || '');
-    let role;
-    
-    if(token != '') {
+  exctractKeyJwt(key: any) {
+    let token = localStorage.getItem('jwt')  ? JSON.parse(localStorage.getItem('jwt') || '') : '';
+    let result;
+    if (token != '') {
       const decodedToken = this.helper.decodeToken(token);
-      role = decodedToken.role;
-      if(role == "ADMIN") {
-        return true;
-      }
+      result = decodedToken[key];
+
+      return result;
     }
-    return false;
+    return null;
+  }
+
+  getUser() {
+    return this.crudService.getUser('/utilisateur', this.exctractKeyJwt("sub"))
   }
 }
