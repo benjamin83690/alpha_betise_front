@@ -2,13 +2,13 @@
   <mat-card-header>
     <div class="box-img me-1 mb-2">
       <img
-        *ngIf="evenement.livre && evenement.livre.photosLivre.length"
+        *ngIf="evenement.livre && evenement.livre.photoLivre"
         mat-card-sm-image
-        src="{{ evenement.livre.photosLivre[0].pathUrl }}"
+        src="{{ evenement.livre.photoLivre}}"
         class="rounded"
       />
       <img
-        *ngIf="!evenement.livre || !evenement.livre.photosLivre.length"
+        *ngIf="!evenement.livre || !evenement.livre.photoLivre"
         mat-card-sm-image
         src=""
         class="rounded"

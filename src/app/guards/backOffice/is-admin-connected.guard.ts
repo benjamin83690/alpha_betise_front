@@ -25,13 +25,7 @@ export class IsAdminConnectedGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    //   this.authService.checkUserConnected();
-    // return this.authService.isAdmin.pipe(map(admin => {return !!admin}), tap(isAdmin => {
-    //   if(!isAdmin) {
-    //     this.router.navigate(['/interdit'])
-    //   }
-    // }));
-    if(this.authService.isAdminConnected()) {
+    if (this.authService.exctractKeyJwt("role") == "ADMIN") {
       return true;
     }
     return this.router.navigate(['/interdit']);
