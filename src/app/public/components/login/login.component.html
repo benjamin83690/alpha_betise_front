@@ -1,0 +1,46 @@
+<div class="container mb-5" style="margin-top: 180px;">
+  <div class="card shadow-sm" style="width: 32%; margin: auto">
+    <div class="card-header bg-light">
+      <h2 class="m-0 text-center">Rejoindre l'Alpha Betise</h2>
+    </div>
+    <div class="card-body p-4">
+      <form
+        [formGroup]="userForm"
+        class="d-flex flex-column"
+      >
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Placeholder"
+            formControlName="email"
+            type="email"
+          />
+          <mat-icon matSuffix> email</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Mot de passe</mat-label>
+          <input
+            matInput
+            placeholder="Placeholder"
+            formControlName="motDePasse"
+            type="password"
+          />
+          <mat-icon matSuffix>https</mat-icon>
+        </mat-form-field>
+
+        <button mat-raised-button type="submit" class="my-2" color="primary" (click)="checkUser()">
+          Se connecter
+          <mat-icon>send</mat-icon>
+        </button>
+        <div class="d-flex justify-content-center" *ngIf="pending">
+          <small class="me-2 text-muted fst-italic"><mat-icon>verified_user</mat-icon> Verification </small>
+          <mat-spinner
+          [diameter]="20"
+          color="primary"
+          ></mat-spinner>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
