@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../../material/material.module';
-import { SnackbarComponent } from '../../snackbar/snackbar.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { MaterialModule } from '../material/material.module';
+import { SnackbarComponent } from '../snackbar/snackbar.component';
 
 
 
 
 @NgModule({
   declarations: [
-    SnackbarComponent
+    SnackbarComponent,
   ],
   imports: [
     CommonModule,
@@ -26,7 +26,7 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
   ]
 })
 export class SharedModule { }
