@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ConseilsLectureComponent } from './components/conseils-lecture/conseils-lecture.component';
-import { InscriptionEvenementComponent } from './components/inscription-evenement/inscription-evenement.component';
-import { RencontresComponent } from './components/rencontres/rencontres.component';
-import { EVENT_CONF } from './configs/EventConfig';
-import { NextEventConfig } from './configs/NextEventConfig';
-import { PastEventConfig } from './configs/PastEventConfig';
-import { ProduitComponent } from './components/produit/produit.component';
-import { LoginComponent } from './components/login/login.component';
-import { InscriptionComponent } from './components/inscription/inscription.component';
-import { AccueilComponent } from './components/accueil/accueil.component';
-import { ProfilComponent } from './components/profil/profil.component';
-import { LivresComponent } from './components/back-office/livres/livres.component';
-import { InterditComponent } from './components/interdit/interdit.component';
-import { IsAdminConnectedGuard } from './guards/backOffice/is-admin-connected.guard';
-import { AddLivreComponent } from './components/back-office/add-livre/add-livre.component';
-import { UpdateLivreComponent } from './components/back-office/update-livre/update-livre.component';
+import { ConseilsLectureComponent } from './public/components/conseils-lecture/conseils-lecture.component';
+import { InscriptionEvenementComponent } from './public/components/inscription-evenement/inscription-evenement.component';
+import { RencontresComponent } from './public/components/rencontres/rencontres.component';
+import { EVENT_CONF } from './public/configs/EventConfig';
+import { NextEventConfig } from './public/configs/NextEventConfig';
+import { PastEventConfig } from './public/configs/PastEventConfig';
+import { ProduitComponent } from './public/components/produit/produit.component';
+import { LoginComponent } from './public/components/login/login.component';
+import { InscriptionComponent } from './public/components/inscription/inscription.component';
+import { AccueilComponent } from './public/components/accueil/accueil.component';
+import { ProfilComponent } from './public/components/profil/profil.component';
+import { LivresComponent } from './back-office/components/livres/livres.component';
+import { InterditComponent } from './public/components/interdit/interdit.component';
+import { IsAdminConnectedGuard } from './shared/guards/isAdminConnectedGuard/is-admin-connected.guard';
+import { AddLivreComponent } from './back-office/components/add-livre/add-livre.component';
+import { UpdateLivreComponent } from './back-office/components/update-livre/update-livre.component';
 
 const routes: Routes = [
   {path: '', component: AccueilComponent},
