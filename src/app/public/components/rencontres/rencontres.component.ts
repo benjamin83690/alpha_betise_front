@@ -3,6 +3,7 @@ import { MatCalendar, MatCalendarCellClassFunction } from '@angular/material/dat
 import { EventConfig, EVENT_CONF } from '../../configs/EventConfig';
 import { RencontresService } from '../../services/rencontresService/rencontres.service';
 import { CrudService } from 'src/app/shared/services/crudService/crud.service';
+import { Evenement } from 'src/app/shared/models/EvenementModel';
 
 @Component({
   selector: 'app-rencontres',
@@ -11,8 +12,8 @@ import { CrudService } from 'src/app/shared/services/crudService/crud.service';
 })
 export class RencontresComponent implements OnInit {
   eventConfig!: EventConfig;
-  evenement: any = {};
-  teaserEvents!: any[];
+  evenement!: Evenement;
+  teaserEvents!: Evenement[];
   startDate!: Date;
   myFilter!: (date: Date) => boolean;
   @ViewChild('calendar') calendar!: MatCalendar<any>;
@@ -30,8 +31,8 @@ export class RencontresComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.crudService.getEvents(this.eventConfig.ApiRoute).subscribe((data) => {
-      // data.forEach(item => this.eventConfig.evenements.push(item));
+    this.crudService.getEvents(this.eventConfig.ApiRoute).subscribe((data: any) => {
+      console.log(data);
       
       this.eventConfig.evenements = data;
       this.evenement = this.eventService.defaultEvent(
@@ -53,6 +54,8 @@ export class RencontresComponent implements OnInit {
   }
 
   formatDate(str: string): Date {
+    console.log(str);
+    
     return new Date(str);
   }
 
@@ -76,12 +79,4 @@ export class RencontresComponent implements OnInit {
       this.eventConfig.evenements
     );
   }
-
-  // isNotEmpty(obj: any) {
-  //   return Object.keys(obj).length;
-  // }
-
-  // getFullDate(d: Date) {
-  //   this.eventService.getFullDate(d);
-  // }
 }

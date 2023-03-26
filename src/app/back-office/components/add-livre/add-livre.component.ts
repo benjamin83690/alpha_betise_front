@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Auteur } from 'src/app/shared/models/AuteurModel';
+import { Categorie } from 'src/app/shared/models/CategorieModel';
+import { Collection } from 'src/app/shared/models/CollectionModel';
+import { Editeur } from 'src/app/shared/models/EditeurModel';
+import { EtatStock } from 'src/app/shared/models/EtatStockModel';
+import { Langue } from 'src/app/shared/models/LangueModel';
+import { Livre } from 'src/app/shared/models/LivreModel';
 import { CrudService } from 'src/app/shared/services/crudService/crud.service';
 
 @Component({
@@ -11,12 +18,12 @@ import { CrudService } from 'src/app/shared/services/crudService/crud.service';
 export class AddLivreComponent implements OnInit {
   livreForm!: FormGroup;
   pending: boolean = false;
-  categories: any = [];
-  langues: any = [];
-  etats: any = [];
-  auteurs: any = [];
-  editeurs:any = [];
-  collections: any = [];
+  categories: Categorie[] = [];
+  langues: Langue[] = [];
+  etats: EtatStock[] = [];
+  auteurs: Auteur[] = [];
+  editeurs:Editeur[] = [];
+  collections: Collection[] = [];
   
 
   constructor(
@@ -47,27 +54,27 @@ export class AddLivreComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.crudService.getAll('/categorie-livre').subscribe(data => {
+    this.crudService.getAll('/categorie-livre').subscribe((data: Categorie[]) => {
       this.categories = data;
     })
 
-    this.crudService.getAll('/langue').subscribe(data => {
+    this.crudService.getAll('/langue').subscribe((data: Langue[]) => {
       this.langues = data;
     })
 
-    this.crudService.getAll('/etat-stock').subscribe(data => {
+    this.crudService.getAll('/etat-stock').subscribe((data: EtatStock[]) => {
       this.etats = data;
     })
 
-    this.crudService.getAll('/auteur').subscribe(data => {
+    this.crudService.getAll('/auteur').subscribe((data: Auteur[]) => {
       this.auteurs = data;
     })
 
-    this.crudService.getAll('/editeur').subscribe(data => {
+    this.crudService.getAll('/editeur').subscribe((data: Editeur[]) => {
       this.editeurs = data;
     })
 
-    this.crudService.getAll('/collection').subscribe(data => {
+    this.crudService.getAll('/collection').subscribe((data: Collection[]) => {
       this.collections = data;
     })
 
@@ -75,8 +82,7 @@ export class AddLivreComponent implements OnInit {
 
   submitLivre() {
     this.pending = true;
-    console.log(this.livreForm.value);
-    
+
     this.crudService
       .save('/livre', this.livreForm.value)
       .subscribe((data) => {

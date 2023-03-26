@@ -1,4 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Evenement } from 'src/app/shared/models/EvenementModel';
+import { Livre } from 'src/app/shared/models/LivreModel';
 import { AuthService } from 'src/app/shared/services/authService/auth.service';
 import { CrudService } from 'src/app/shared/services/crudService/crud.service';
 
@@ -7,23 +9,17 @@ import { CrudService } from 'src/app/shared/services/crudService/crud.service';
   templateUrl: './accueil.component.html',
   styleUrls: ['./accueil.component.css']
 })
-export class AccueilComponent implements OnInit, AfterViewInit {
+export class AccueilComponent implements OnInit{
 
-  livres!: any;
-  evenements!: any;
+  livres!: Livre[];
+  evenements!: Evenement[];
   userLoggedIn:boolean = false;
 
   constructor(private crudService: CrudService, private authService: AuthService) { }
 
-  ngAfterViewInit(): void {
-    // this.authService.userLoggedIn.subscribe(data => {
-    //   console.log(data);
-    // })
-  }
-
   ngOnInit(): void {
-    this.crudService.getAll('/livre').subscribe(data => this.livres = data);
-    this.crudService.getAll('/evenements').subscribe(data => this.evenements = data);
+    this.crudService.getAll('/livre').subscribe((data: Livre[]) => this.livres = data);
+    this.crudService.getAll('/evenements').subscribe((data: Evenement[]) => this.evenements = data);
 
   }
 

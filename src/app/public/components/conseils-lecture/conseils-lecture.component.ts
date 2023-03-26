@@ -3,12 +3,12 @@ import {
   Component,
   Input,
   OnInit,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { BehaviorSubject, map, Observable, startWith } from 'rxjs';
+import { Observable } from 'rxjs';
 import { UtilsService } from 'src/app/shared/services/utilsService/utils.service';
 
 // sera enlever quand on aura de vraies data

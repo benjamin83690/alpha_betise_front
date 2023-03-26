@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { User } from '../../models/UserModel';
 import { CrudService } from '../crudService/crud.service';
 
 @Injectable({

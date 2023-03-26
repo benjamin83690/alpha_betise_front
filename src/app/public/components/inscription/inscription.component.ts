@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
+import { User } from 'src/app/shared/models/UserModel';
 import { AuthService } from 'src/app/shared/services/authService/auth.service';
 import { CrudService } from 'src/app/shared/services/crudService/crud.service';
 
@@ -36,7 +37,7 @@ export class InscriptionComponent implements OnInit {
     .save('/auth/inscription', this.userForm.value)
     .subscribe({
       next: data => {
-          this.authService.saveToken(data.token);
+          // this.authService.saveToken(data.token);
           this.router.navigate(['/connexion']);  
         },
         error: () => {

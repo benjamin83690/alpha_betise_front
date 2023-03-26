@@ -1,7 +1,8 @@
 import { InjectionToken } from "@angular/core"
+import { Evenement } from "src/app/shared/models/EvenementModel";
 
 export interface EventConfig {
-    evenements: any[],
+    evenements: Evenement[],
     selectedEvent: any,
     ApiRoute: string,
     textTitle: string,

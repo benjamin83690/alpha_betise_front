@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/authService/auth.service';
-import { CrudService } from 'src/app/shared/services/crudService/crud.service';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +12,7 @@ export class HeaderComponent implements OnInit {
   userLogged: boolean = false;
   isAdmin: boolean = false;
 
-  constructor(private authService: AuthService, private crudService: CrudService) { 
+  constructor(private authService: AuthService) { 
   }
 
   ngOnInit(): void {
